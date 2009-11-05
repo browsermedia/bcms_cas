@@ -37,7 +37,7 @@ configuration options you need. Add the following to your config/initializers/br
     )
 
 Make sure your SITE_DOMAIN variable in production/development is correctly set to the right top level domain. This will be needed
-to allow redirects between the servers to happen correctly (it requires Absolute URLs). For example, in production.rb
+to allow redirects between the servers to happen correctly (it requires Absolute URLs). For example, in config/environments/production.rb:
 
     SITE_DOMAIN="www.yourdomainname.com"
 
@@ -80,6 +80,7 @@ The key changes are:
 3. Change the username parameter from :login to :username
 
 F. Known Issues
+
 * Every page is secured by the CASClient Gateway Filter, which means a lot of redirects. This is potentially a big performance hit, and would require modifying the filter so it only handles checking login_tickets, rather than redirects. 
 * A user logged in using CAS will be assigned to a single group. There is no way to map a user to different groups (i.e. Platnium or Gold Members). Could potentially be done via cas extra info.
 * The internal CMS User database is bypassed/not used for login for front end pages. This means it would fail the cmsadmin user tried to login via the Login Form.

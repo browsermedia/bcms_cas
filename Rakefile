@@ -8,3 +8,34 @@ require 'rake/testtask'
 require 'rake/rdoctask'
 
 require 'tasks/rails'
+
+
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |spec|
+    spec.name = "bcms_cas"
+    spec.rubyforge_project = "browsercms"
+    spec.version = "1.0.0"
+    spec.summary = "A CAS Module for BrowserCMS"
+    spec.author = "BrowserMedia"
+    spec.email = "github@browsermedia.com"
+    spec.homepage = "http://browsercms.org"
+    spec.files = Dir["app/**/*"]
+    spec.files += Dir["db/migrate/*.rb"]
+    spec.files -= Dir["db/migrate/*_browsercms_*.rb"]
+    spec.files -= Dir["db/migrate/*_load_seed_data.rb"]
+    spec.files += Dir["lib/bcms_cas.rb"]
+    spec.files += Dir["lib/bcms_cas/*"]
+    spec.files += Dir["lib/cas/*"]
+    spec.files += Dir["rails/init.rb"]
+    spec.has_rdoc = true
+    spec.extra_rdoc_files = ["README.markdown"]
+  end
+
+  Jeweler::RubyforgeTasks.new do |rubyforge|
+    rubyforge.doc_task = "rdoc"
+  end
+
+rescue LoadError
+  puts "Jeweler not available. Install it with: sudo gem install jeweler"
+end
