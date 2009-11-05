@@ -1,3 +1,5 @@
+# This assumes there is no existing LoginPortletHelper defined in the Core CMS project, and provides one
+# to simplify what users need to do in the form.
 module LoginPortletHelper
 
   # Generates the hidden field for the service_url that the CAS server expects, which tells it where to redirect to. Must create
