@@ -33,7 +33,7 @@ begin
   end
 
   Jeweler::RubyforgeTasks.new do |rubyforge|
-    rubyforge.doc_task = "rdoc"
+
   end
 
 rescue LoadError
