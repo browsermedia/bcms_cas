@@ -2,6 +2,8 @@
 # Customizes behavior of CASFilter.
 #
 module Cas
+
+  VERSION = ""
   class Utils
     # This is a wrapper around the default behavior of the CASClient Rails filter.
     #

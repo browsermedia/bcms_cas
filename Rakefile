@@ -10,12 +10,13 @@ require 'rake/rdoctask'
 require 'tasks/rails'
 
 
+require 'lib/cas/version'
+
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |spec|
     spec.name = "bcms_cas"
     spec.rubyforge_project = "browsercms"
-    spec.version = "1.0.0"
     spec.summary = "A CAS Module for BrowserCMS"
     spec.author = "BrowserMedia"
     spec.email = "github@browsermedia.com"
