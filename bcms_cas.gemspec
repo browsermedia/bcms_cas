@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     "app/models/cas_user.rb",
-     "app/portlets/helpers/login_portlet_helper.rb",
+     "app/portlets/helpers/login_portlet_extension.rb",
      "db/migrate/20091002162550_add_cas_user_group.rb",
      "lib/bcms_cas.rb",
      "lib/bcms_cas/routes.rb",

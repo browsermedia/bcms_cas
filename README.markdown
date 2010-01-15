@@ -55,7 +55,7 @@ group can visit.
 ## E. Configure Login Form Portlet
 Alter the Login Form portlet to look something like this:
 
-    <% form_tag "https://cas.yourdomainname.org" do %>
+    <% form_tag "login_url" do %>
         <%= login_ticket_tag %>
         <%= service_url_tag %>
         <p>
@@ -76,8 +76,16 @@ Alter the Login Form portlet to look something like this:
 The key changes are:
 
 1. The form needs to submit directly to the CAS server
-2. You need to add helpers for login_ticket_tag and service_url_tag. These generate hidden parameters CAS services need.
+2. You need to add helpers for login_url, login_ticket_tag and service_url_tag. These generate hidden parameters CAS services need.
 3. Change the username parameter from :login to :username
+
+You must also create a file in your project called: app/portlets/helpers/login_portlet_helper.rb, with the following contents:
+
+        module LoginPortletHelper
+          include Cas::LoginPortlet
+        end
+
+This will add the needed methods for the above class.
 
 F. Known Issues
 
