@@ -7,6 +7,8 @@ as an example of a server.
 This module will allow user to login to the public area of the CMS, using the Login Form Portlet. It does not handle users that need to
 log into the CMS administrative area. It also handles single logout by redirecting the user to cas /logout service.
 
+As of 1.0.1, this is now managed via gemcutter.
+
 ## A. Instructions
 Here are the necessary steps to install this module.
 
