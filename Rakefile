@@ -31,9 +31,8 @@ begin
     spec.extra_rdoc_files = ["README.markdown"]
   end
 
-  Jeweler::RubyforgeTasks.new do |rubyforge|
+  Jeweler::GemcutterTasks.new
 
-  end
 
 rescue LoadError
   puts "Jeweler not available. Install it with: sudo gem install jeweler"
