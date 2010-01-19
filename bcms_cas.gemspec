@@ -9,14 +9,14 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["BrowserMedia"]
-  s.date = %q{2010-01-18}
+  s.date = %q{2010-01-19}
+  s.description = %q{Allows a BrowserCMS project to connect to a CAS server to authenticate users.}
   s.email = %q{github@browsermedia.com}
   s.extra_rdoc_files = [
     "README.markdown"
   ]
   s.files = [
     "app/models/cas_user.rb",
-     "app/portlets/helpers/login_portlet_helper.rb",
      "db/migrate/20091002162550_add_cas_user_group.rb",
      "lib/bcms_cas.rb",
      "lib/bcms_cas/routes.rb",

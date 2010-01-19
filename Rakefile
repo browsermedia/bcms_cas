@@ -17,7 +17,9 @@ begin
     spec.author = "BrowserMedia"
     spec.email = "github@browsermedia.com"
     spec.homepage = "http://browsercms.org"
+    spec.description = "Allows a BrowserCMS project to connect to a CAS server to authenticate users."
     spec.files = Dir["app/**/*"]
+    spec.files -= Dir["app/portlets/helpers/login_portlet_helper.rb"]
     spec.files += Dir["db/migrate/*.rb"]
     spec.files -= Dir["db/migrate/*_browsercms_*.rb"]
     spec.files -= Dir["db/migrate/*_load_seed_data.rb"]
