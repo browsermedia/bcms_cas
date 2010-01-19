@@ -27,6 +27,9 @@ begin
     spec.files += Dir["lib/bcms_cas/*"]
     spec.files += Dir["lib/cas/*"]
     spec.files += Dir["rails/init.rb"]
+    spec.add_dependency('browsercms', '>=3.0.6')
+    spec.add_dependency('rubycas-client')
+
     spec.has_rdoc = true
     spec.extra_rdoc_files = ["README.markdown"]
   end
