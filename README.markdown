@@ -55,7 +55,7 @@ that more accurately reflects who these users are (i.e. Members, Staff, etc) and
 group can visit.
 
 ## E. Configure Login Form Portlet
-Alter the Login Form portlet to look something like this:
+Alter the Login Form portlet to look something like this (or add a file to your project called app/views/portlets/login/render.html.erb with the following content):
 
     <% form_tag "https://cas.yourdomainname.org" do %>
         <%= login_ticket_tag %>
@@ -83,9 +83,9 @@ The key changes are:
 
 You must also create a file in your project called: app/portlets/helpers/login_portlet_helper.rb, with the following contents:
 
-        module LoginPortletHelper
-          include Cas::Login
-        end
+    module LoginPortletHelper
+      include Cas::LoginPortlet
+    end
 
 This will add the needed methods for the above class.
 
