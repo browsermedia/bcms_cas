@@ -1,7 +1,7 @@
 require "test_helper"
 require 'mocha'
 
-class CasModuleTest < ActiveSupport::TestCase
+class CasTest < ActiveSupport::TestCase
 
   def setup
 

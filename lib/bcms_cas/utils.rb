@@ -1,7 +1,7 @@
 #
 # Customizes behavior of CASFilter.
 #
-module CasModule
+module Cas
 
   VERSION = ""
   class Utils

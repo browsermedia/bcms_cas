@@ -57,7 +57,7 @@ group can visit.
 ## E. Configure Login Form Portlet
 Alter the Login Form portlet to look something like this (or add a file to your project called app/views/portlets/login/render.html.erb with the following content):
 
-    <% form_tag "https://cas.yourdomainname.org" do %>
+    <% form_tag login_url_tag do %>
         <%= login_ticket_tag %>
         <%= service_url_tag %>
         <p>

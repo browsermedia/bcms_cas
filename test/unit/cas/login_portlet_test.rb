@@ -2,10 +2,14 @@ require "test_helper"
 require 'mocha'
 
 class LoginObject
-  include CasModule::LoginPortlet
+  include Cas::LoginPortlet
 end
 
 class LoginPortletTest < ActiveSupport::TestCase
+
+  def setup
+    @obj = LoginObject.new
+  end
 
   test "service_url_tag" do
     obj = LoginObject.new
@@ -29,5 +33,12 @@ class LoginPortletTest < ActiveSupport::TestCase
 
     assert_equal "http://example.com", obj.login_url
   end
+
+  test "Alias (to avoid helper conflicts)" do
+    CASClient::Frameworks::Rails::Filter.expects(:login_url).returns("http://example.com")
+
+    assert_equal "http://example.com", @obj.login_url_tag
+  end
+
 
 end

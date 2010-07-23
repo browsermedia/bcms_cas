@@ -5,7 +5,7 @@ require 'casclient/frameworks/rails/filter'
 #
 # Augments the core Cms::Controllers to add Cas Authentication behavior.
 #
-module CasModule
+module Cas
   module Authentication
 
     # Called when this module is included on the given class.
@@ -44,7 +44,7 @@ module CasModule
       end
     end
   end
-  Cms::ContentController.send(:include, CasModule::Authentication)
+  Cms::ContentController.send(:include, Cas::Authentication)
 
 
   # Extends the core SessionController to properly destroy the local session on logout, and redirect to CAS for Single Log out.
@@ -59,9 +59,9 @@ module CasModule
       def destroy_with_cas
         logger.info "Handle single logout."
         logout_user
-        CasModule::Utils.logout(self, "http://#{SITE_DOMAIN}/")
+        Cas::Utils.logout(self, "http://#{SITE_DOMAIN}/")
       end
     end
   end
-  Cms::SessionsController.send(:include, CasModule::SingleLogOut)
+  Cms::SessionsController.send(:include, Cas::SingleLogOut)
 end

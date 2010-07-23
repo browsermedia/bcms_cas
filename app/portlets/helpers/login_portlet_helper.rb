@@ -1,3 +1,3 @@
 module LoginPortletHelper
-  include CasModule::LoginPortlet
+  include Cas::LoginPortlet
 end
