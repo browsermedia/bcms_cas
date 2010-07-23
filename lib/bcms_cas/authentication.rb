@@ -29,8 +29,8 @@ module Cas
       def login_from_cas_ticket
         logger.debug "Attempting to login using CAS session variable."
         if session[:cas_user]
-          logger.warn "Who is @current_user '#{@current_user.login}'?" if @current_user
-          logger.warn "Who is User.current '#{User.current.login}'?" if User.current
+          logger.info "Who is @current_user '#{@current_user.login}'?" if @current_user
+          logger.info "Who is User.current '#{User.current.login}'?" if User.current
 
           user = CasUser.new(:login=>session[:cas_user])
 
