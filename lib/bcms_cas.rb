@@ -1,3 +1,3 @@
 require 'bcms_cas/routes'
-require 'cas/authentication'
-require 'cas/login_portlet_extension'
+require 'bcms_cas/authentication'
+require 'bcms_cas/login_portlet_extension'
