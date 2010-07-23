@@ -2,7 +2,7 @@ require "test_helper"
 require 'mocha'
 
 class LoginObject
-  include Cas::LoginPortlet
+  include CasModule::LoginPortlet
 end
 
 class LoginPortletTest < ActiveSupport::TestCase

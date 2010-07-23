@@ -25,7 +25,7 @@ class CasAuthTest < ActiveSupport::TestCase
     MyController.expects(:before_filter).with(:login_from_cas_ticket)
     MyController.expects(:before_filter).with(:check_access_to_page_normally)
 
-    MyController.send(:include, Cas::Authentication)
+    MyController.send(:include, CasModule::Authentication)
 
   end
 
@@ -75,7 +75,7 @@ class CasSessionControllerTest < ActiveSupport::TestCase
 
 
   test "alias_method_chain the normal methods" do
-    MyController.send(:include, Cas::SingleLogOut)
+    MyController.send(:include, CasModule::SingleLogOut)
 
     c = MyController.new
     
@@ -86,12 +86,12 @@ class CasSessionControllerTest < ActiveSupport::TestCase
   end
 
   test "destroy_with_cas redirects to server and calls logout_user" do
-    MyController.send(:include, Cas::SingleLogOut)
+    MyController.send(:include, CasModule::SingleLogOut)
     c = MyController.new
 
     c.expects(:logout_user)
 
-    Cas::Utils.expects(:logout).with(c, "http://#{SITE_DOMAIN}/")
+    CasModule::Utils.expects(:logout).with(c, "http://#{SITE_DOMAIN}/")
 
     c.destroy_with_cas
 
