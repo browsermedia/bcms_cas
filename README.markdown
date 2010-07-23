@@ -29,26 +29,18 @@ make any configuration changes in your rails project.
 
 ## C. Installing/Configuring the Module
 To install a BrowserCMS module follow the instructions here http://www.browsercms.org/doc/guides/html/installing_modules.html .
-After that you will need to configure the rubycas-client to point to the correct CAS server, along with any other
-configuration options you need. Add the following to your config/initializers/browsercms.rb:
+After that you will need to configure the module point to the correct CAS server. Create a file called config/initializers/bcms_cas.rb and add the following to it:
 
-
-    CASClient::Frameworks::Rails::Filter.configure(
-      :cas_base_url => "https://cas.yourdomainname.org",
-      :extra_attributes_session_key => :cas_extra_attributes
-    )
+    Cas::Module.configure do |config|
+      config.server_url = "https://cas.yourdomainname.com"
+    end
 
 Make sure your SITE_DOMAIN variable in production/development is correctly set to the right top level domain. This will be needed
 to allow redirects between the servers to happen correctly (it requires Absolute URLs). For example, in config/environments/production.rb:
 
     SITE_DOMAIN="www.yourdomainname.com"
 
-### Extra Attributes (Optional)
-The :extra_attributes_session_key may not be needed, depending on what type of Authenticator your CAS server is using. You can
-safely leave it out if you are just using the normal CMS logic. A CAS server can send additional information back, and these will be stored as
-session variables that can be accessed in other methods.
-
-## D. Add/Configure the 'CAS Authenticated User' Group
+## D. Configure the 'CAS Authenticated User' Group
 When you run rake db:migrate, this module will add a new group to the CMS called 'CAS Authenticated Users'. All users that
 log in successfully will be assigned to members of this group. You will potentially want to rename this group to something
 that more accurately reflects who these users are (i.e. Members, Staff, etc) and then set which sections of the website this
