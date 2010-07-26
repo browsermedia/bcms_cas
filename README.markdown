@@ -14,7 +14,7 @@ Here are the necessary steps to install this module.
 2. Install the rubycas-client gem (See B below)
 3. Install the bcms_cas module, and configure it to point to your CAS server (see C below).
 4. Migrate the database to add the CAS Group (See D below)
-5. Alter the Login Form Portlet to submit to the CAS server. (See E below)
+5. Create a Login Form to submit to the CAS server. (See E below)
 
 ## B. Installing RubyCAS-Client
 This project depends on RubyCAS-client (http://code.google.com/p/rubycas-client/). RubyCAS-Client is a standard Rails PluginGem, and the instructions
@@ -26,15 +26,20 @@ This will add the latest version of a gem. The bcms_cas module will require the 
 make any configuration changes in your rails project.
 
 ## C. Installing/Configuring the Module
-To install a BrowserCMS module follow the instructions here http://www.browsercms.org/doc/guides/html/installing_modules.html .
-After that you will need to configure the module point to the correct CAS server. Create a file called config/initializers/bcms_cas.rb and add the following to it:
+To install a BrowserCMS module see the following instructions http://www.browsercms.org/doc/guides/html/installing_modules.html . After you add the gem to your
+environment.rb, run the following command to generate the necessary configuration files.
+
+    $ ./script/generate bcms_cas
+
+This will generate several files. You will then need to edit one of them to point to the CAS server. Edit the config/initializers/bcms_cas.rb and change the server_url
+value to whatever domain name your cas server is located at. The file should look similar to this:
 
     Cas::Module.configure do |config|
       config.server_url = "https://cas.yourdomainname.com"
     end
 
-Make sure your SITE_DOMAIN variable in production/development is correctly set to the right top level domain. This will be needed
-to allow redirects between the servers to happen correctly (it requires Absolute URLs). For example, in config/environments/production.rb:
+Next edit the production.rb to make sure your SITE_DOMAIN variable in production is correctly set to the right top level domain. This will be needed
+to allow redirects between the servers to happen correctly (it requires Absolute URLs).
 
     SITE_DOMAIN="www.yourdomainname.com"
 
@@ -44,40 +49,10 @@ log in successfully will be assigned to members of this group. You will potentia
 that more accurately reflects who these users are (i.e. Members, Staff, etc) and then set which sections of the website this
 group can visit.
 
-## E. Configure Login Form Portlet
-Alter the Login Form portlet to look something like this (or add a file to your project called app/views/portlets/login/render.html.erb with the following content):
+## E. Create a Login Form
 
-    <% form_tag login_url_tag do %>
-        <%= login_ticket_tag %>
-        <%= service_url_tag %>
-        <p>
-            <%= label_tag :login %>
-            <%= text_field_tag :username, @login %>
-        </p>
-        <p>
-            <%= label_tag :password %>
-            <%= password_field_tag :password %>
-            </p>
-        <p>
-            <%= label_tag :remember_me %>
-            <%= check_box_tag :remember_me, '1', @remember_me %>
-        </p>
-        <p><%= submit_tag "Login" %></p>
-    <% end %>
-
-The key changes are:
-
-1. The form needs to submit directly to the CAS server
-2. You need to add helpers for login_ticket_tag and service_url_tag. These generate hidden parameters CAS services need.
-3. Change the username parameter from :login to :username
-
-You must also create a file in your project called: app/portlets/helpers/login_portlet_helper.rb, with the following contents:
-
-    module LoginPortletHelper
-      include Cas::LoginPortlet
-    end
-
-This will add the needed methods for the above class.
+Via the BrowserCMS UI, create a page and place a Login Form portlet on it. It should use the newly generated login view created by the bcms_cas generator. If
+the module is configured correctly, then logging in should correctly establish a CAS session.
 
 F. Known Issues
 

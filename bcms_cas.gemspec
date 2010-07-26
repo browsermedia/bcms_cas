@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["BrowserMedia"]
-  s.date = %q{2010-07-23}
+  s.date = %q{2010-07-26}
   s.description = %q{Allows a BrowserCMS project to connect to a CAS server to authenticate users.}
   s.email = %q{github@browsermedia.com}
   s.extra_rdoc_files = [
@@ -26,7 +26,9 @@ Gem::Specification.new do |s|
      "lib/bcms_cas/utils.rb",
      "rails/init.rb",
      "rails_generators/bcms_cas/bcms_cas_generator.rb",
-     "rails_generators/bcms_cas/templates/initializer.rb"
+     "rails_generators/bcms_cas/templates/initializer.rb",
+     "rails_generators/bcms_cas/templates/login_portlet_helper.rb",
+     "rails_generators/bcms_cas/templates/render.html.erb"
   ]
   s.homepage = %q{http://browsercms.org}
   s.rdoc_options = ["--charset=UTF-8"]

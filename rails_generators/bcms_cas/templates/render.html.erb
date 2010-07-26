@@ -1,0 +1,18 @@
+<%%# This will override the 'Stock' view provided by the LoginFormPortlet in order to make it work with CAS. -%>
+<%% form_tag login_url_tag do %>
+    <%%= login_ticket_tag %>
+    <%%= service_url_tag %>
+    <p>
+      <%%= label_tag :login %>
+      <%%= text_field_tag :username, @login %>
+    </p>
+    <p>
+      <%%= label_tag :password %>
+      <%%= password_field_tag :password %>
+    </p>
+    <p>
+      <%%= label_tag :remember_me %>
+      <%%= check_box_tag :remember_me, '1', @remember_me %>
+    </p>
+    <p><%%= submit_tag "Login" %></p>
+<%% end %>
