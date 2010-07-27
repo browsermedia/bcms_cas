@@ -64,4 +64,5 @@ F. Known Issues
 * The CAS Login page has to be styled to match the look and feel of the site.
 * If the user types in wrong username/pw on CMS login form, they will be left on the CAS Login page, with message.
 * Every hit to a page with the login form portlet is fetching a LT from CAS. This is potentially slow. [Performance]
+* A user that logs in as a CAS user and then as a cmsadmin will experience odd UI permission problems. This is due to CMS login not correctly clearing all session state.
 

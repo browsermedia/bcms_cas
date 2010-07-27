@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["BrowserMedia"]
-  s.date = %q{2010-07-26}
+  s.date = %q{2010-07-27}
   s.description = %q{Allows a BrowserCMS project to connect to a CAS server to authenticate users.}
   s.email = %q{github@browsermedia.com}
   s.extra_rdoc_files = [
@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     "app/models/cas_user.rb",
+     "app/models/cms/temporary_user.rb",
      "db/migrate/20091002162550_add_cas_user_group.rb",
      "lib/bcms_cas.rb",
      "lib/bcms_cas/authentication.rb",
@@ -44,6 +45,7 @@ Gem::Specification.new do |s|
      "test/unit/cas/login_portlet_test.rb",
      "test/unit/cas_user_test.rb",
      "test/unit/cas_utils_test.rb",
+     "test/unit/cms/temporary_user_test.rb",
      "test/unit/helpers/login_portlet_helper_test.rb"
   ]
 
