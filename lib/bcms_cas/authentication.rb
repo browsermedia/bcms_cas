@@ -20,25 +20,23 @@ module Cas
 
     # Each instance of the controller will gain these methods.
     module InstanceMethods
+
+      # This exists because we want to force this to happen AFTER login_from_cas_ticket. There may be a better way to do this.
       def check_access_to_page_normally
-        logger.warn "Checking auth using normal Cms filter."
         check_access_to_page
       end
 
       # Attempts to set the current user based on the session attribute set by CAS.
       def login_from_cas_ticket
-        logger.debug "Attempting to login using CAS session variable."
+        logger.debug "Checking for cas login. The current_user is '#{@current_user.login}'." if @current_user
         if session[:cas_user]
-          logger.info "Who is @current_user '#{@current_user.login}'?" if @current_user
-          logger.info "Who is User.current '#{User.current.login}'?" if User.current
-
           user = CasUser.new(:login=>session[:cas_user])
 
           # Having to set both of these feels very duplicative. Ideally I would like a way
-          #   to set only once, but calling current_user= has sideeffects.
+          #   to set only once, but calling current_user= has side effects.
           @current_user = User.current = user
 
-          logger.info "Found session[:cas_user]. Created CasUser with login '#{user.login}' and set as current_user." if @current_user
+          logger.debug "CasUser information found in session. Setting current_user as '#{user.login}" if @current_user
         end
         @current_user
       end
@@ -57,7 +55,7 @@ module Cas
     module InstanceMethods
 
       def destroy_with_cas
-        logger.info "Handle single logout."
+        logger.debug "Logging user out of both cms and CAS server."
         logout_user
         Cas::Utils.logout(self, "http://#{SITE_DOMAIN}/")
       end
