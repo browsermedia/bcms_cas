@@ -14,5 +14,14 @@ module Cms
       raise NotImplementedError
     end
 
+    # Determines if this user has access to the CMS UI.
+    #
+    # Note: This overrides User.cms_access? which is implicitly dependant on groups being a proxy/has_many Array, rather than
+    # just an array of groups.
+    def cms_access?
+      groups.each do |g|
+        return true if g.cms_access?
+      end
+    end
   end
 end
