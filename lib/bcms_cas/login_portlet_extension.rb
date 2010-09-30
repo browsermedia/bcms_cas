@@ -18,7 +18,7 @@ module Cas::LoginPortlet
   # Returns the URL to the CAS login service.
   #
   def login_url_tag
-    CASClient::Frameworks::Rails::Filter.login_url         
+    CASClient::Frameworks::Rails::Filter.login_url(@controller)      
   end
 
   alias_method :login_url, :login_url_tag
