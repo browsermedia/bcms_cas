@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["BrowserMedia"]
-  s.date = %q{2010-07-29}
+  s.date = %q{2010-09-30}
   s.description = %q{Allows a BrowserCMS project to connect to a CAS server to authenticate users.}
   s.email = %q{github@browsermedia.com}
   s.extra_rdoc_files = [
