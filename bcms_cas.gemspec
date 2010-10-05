@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bcms_cas}
-  s.version = "1.1.0"
+  s.version = "1.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["BrowserMedia"]
-  s.date = %q{2010-09-30}
+  s.date = %q{2010-10-05}
   s.description = %q{Allows a BrowserCMS project to connect to a CAS server to authenticate users.}
   s.email = %q{github@browsermedia.com}
   s.extra_rdoc_files = [
