@@ -21,9 +21,12 @@ class CasAuthTest < ActiveSupport::TestCase
 
   def setup
     MyController.expects(:skip_filter).with(:check_access_to_page)
+    MyController.expects(:skip_filter).with(:try_to_stream_file)
+    
     MyController.expects(:before_filter).with(CASClient::Frameworks::Rails::GatewayFilter)
     MyController.expects(:before_filter).with(:login_from_cas_ticket)
-    MyController.expects(:before_filter).with(:check_access_to_page_normally)
+    MyController.expects(:before_filter).with(:try_to_stream_file)
+    MyController.expects(:before_filter).with(:check_access_to_page)
 
     MyController.send(:include, Cas::Authentication)
 
@@ -33,13 +36,6 @@ class CasAuthTest < ActiveSupport::TestCase
     User.current = nil
   end
 
-
-  test "Alias's the existing filter to a different name." do
-    c = MyController.new
-    c.expects(:check_access_to_page)
-
-    c.check_access_to_page_normally
-  end
 
   test "adds current_user and login from session to class" do
     c = MyController.new
@@ -66,7 +62,7 @@ class CasAuthTest < ActiveSupport::TestCase
   end
 
   test "Cms::ContentController gets augmented" do
-    assert (Cms::ContentController.new.respond_to? :check_access_to_page_normally)
+    assert (Cms::ContentController.new.respond_to? :login_from_cas_ticket)
   end
 
 end
