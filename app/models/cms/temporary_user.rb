@@ -32,13 +32,6 @@ module Cms
       false
     end
 
-#    def cms_access?
-#      groups.each do |g|
-#        return true if g.cms_access?
-#      end
-#      false
-#    end
-
     # Returns all sections that this user has rights to view.
     #
     # Overrides core behavior of User to avoid including user as part of the query (since temp users doen't exist in the database).

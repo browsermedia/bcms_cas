@@ -12,19 +12,19 @@ module Cas
     def self.included(controller_class)
       controller_class.send(:include, InstanceMethods)
 
+      # This reorders the filters applied to requests so that CAS authenticates a user first, before Authorization for documents or pages is checked.
       controller_class.skip_filter :check_access_to_page
+      controller_class.skip_filter :try_to_stream_file
+      
       controller_class.before_filter CASClient::Frameworks::Rails::GatewayFilter
       controller_class.before_filter :login_from_cas_ticket
-      controller_class.before_filter :check_access_to_page_normally
+      controller_class.before_filter :try_to_stream_file      
+      controller_class.before_filter :check_access_to_page
+      
     end
 
     # Each instance of the controller will gain these methods.
     module InstanceMethods
-
-      # This exists because we want to force this to happen AFTER login_from_cas_ticket. There may be a better way to do this.
-      def check_access_to_page_normally
-        check_access_to_page
-      end
 
       # Attempts to set the current user based on the session attribute set by CAS.
       def login_from_cas_ticket
