@@ -17,6 +17,7 @@ Here are the necessary steps to install this module.
 
 Install the module by running the following command in your project.
 
+    $ gem install bcms_cas
     $ rails g cms:install bcms_cas
 	$ rake db:seed
 
