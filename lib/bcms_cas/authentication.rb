@@ -16,6 +16,7 @@ module Cas
       controller_class.skip_filter :check_access_to_page
       controller_class.skip_filter :try_to_stream_file
       
+      controller_class.before_filter :verify_cas_configured
       controller_class.before_filter CASClient::Frameworks::Rails::GatewayFilter
       controller_class.before_filter :login_from_cas_ticket
       controller_class.before_filter :try_to_stream_file      
@@ -26,6 +27,13 @@ module Cas
     # Each instance of the controller will gain these methods.
     module InstanceMethods
 
+      # Provide a more helpful warning if developers forgot to configure the server correctly.
+      def verify_cas_configured
+        unless BcmsCas::Engine.configured?
+          BcmsCas::Engine.raise_configuration_error
+        end
+      end
+      
       # Attempts to set the current user based on the session attribute set by CAS.
       def login_from_cas_ticket
         logger.debug "Checking for cas login. The current_user is '#{@current_user.login}'." if @current_user
@@ -42,7 +50,6 @@ module Cas
       end
     end
   end
-  Cms::ContentController.send(:include, Cas::Authentication)
 
 
   # Extends the core SessionController to properly destroy the local session on logout, and redirect to CAS for Single Log out.
@@ -61,5 +68,4 @@ module Cas
       end
     end
   end
-  Cms::SessionsController.send(:include, Cas::SingleLogOut)
 end

@@ -12,6 +12,13 @@ class MyController < ActionController::Base
     {}
   end
 
+  def session
+    unless @custom_session
+      @custom_session = {}
+    end
+    @custom_session
+  end
+  
   def destroy
     "Exists only to be alias_method_chained"
   end
@@ -22,7 +29,8 @@ class CasAuthTest < ActiveSupport::TestCase
   def setup
     MyController.expects(:skip_filter).with(:check_access_to_page)
     MyController.expects(:skip_filter).with(:try_to_stream_file)
-    
+
+    MyController.expects(:before_filter).with(:verify_cas_configured)
     MyController.expects(:before_filter).with(CASClient::Frameworks::Rails::GatewayFilter)
     MyController.expects(:before_filter).with(:login_from_cas_ticket)
     MyController.expects(:before_filter).with(:try_to_stream_file)
@@ -48,7 +56,6 @@ class CasAuthTest < ActiveSupport::TestCase
 
   test "login_from_cas_ticket will create and set the current user and User.current if a session attribute was found." do
     c = MyController.new
-    c.session = {}
     c.session[:cas_user] = "1234"
 
     User.current = Group.find_by_code("guest")

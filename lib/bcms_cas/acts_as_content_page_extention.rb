@@ -8,4 +8,3 @@ module Cas
     end
   end
 end
-Cms::Acts::ContentPage.send(:include, Cas::Acts::ContentPage)

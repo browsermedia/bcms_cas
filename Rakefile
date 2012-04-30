@@ -1,41 +1,15 @@
 # Add your own tasks in files placed in lib/tasks ending in .rake,
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
-require(File.join(File.dirname(__FILE__), 'config', 'boot'))
-
+require File.expand_path('../config/application', __FILE__)
 require 'rake'
-require 'rake/testtask'
-require 'rake/rdoctask'
-require 'tasks/rails'
+
+BcmsCas::Application.load_tasks
 
 begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |spec|
-    spec.name = "bcms_cas"
-    spec.rubyforge_project = "browsercms"
-    spec.summary = "A CAS Module for BrowserCMS"
-    spec.author = "BrowserMedia"
-    spec.email = "github@browsermedia.com"
-    spec.homepage = "http://browsercms.org"
-    spec.description = "Allows a BrowserCMS project to connect to a CAS server to authenticate users."
-    spec.files = Dir["app/**/*"]
-    spec.files -= Dir["app/portlets/helpers/login_portlet_helper.rb"]
-    spec.files += Dir["db/migrate/*.rb"]
-    spec.files -= Dir["db/migrate/*_browsercms_*.rb"]
-    spec.files -= Dir["db/migrate/*_load_seed_data.rb"]
-    spec.files += Dir["lib/**/*"]
-    spec.files += Dir["rails/init.rb"]
-    spec.files += Dir["rails_generators/**/*"]
-    spec.add_dependency('browsercms', '>=3.1')
-    spec.add_dependency('rubycas-client')
-
-    spec.has_rdoc = true
-    spec.extra_rdoc_files = ["README.markdown"]
-  end
-
-  Jeweler::GemcutterTasks.new
-
-
+  require 'bundler/setup'
 rescue LoadError
-  puts "Jeweler not available. Install it with: sudo gem install jeweler"
+  puts 'You must `gem install bundler` and `bundle install` to run rake tasks'
 end
+Bundler::GemHelper.install_tasks
+
