@@ -1,4 +1,4 @@
-require 'bcms_cas/engine'
-require 'bcms_cas/routes'
+require "bcms_cas/engine"
 
-
+module BcmsCas
+end

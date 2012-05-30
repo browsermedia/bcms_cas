@@ -13,17 +13,15 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = [
     "README.markdown"
   ]
-  s.files = Dir["{app,lib}/**/*"]
-  s.files += Dir["db/bcms_seeds.rb"]
+  s.files = Dir["{app,config,db,lib}/**/*"]
   s.files += Dir["Gemfile", "LICENSE.txt", "COPYRIGHT.txt", "GPL.txt" ]
-
   s.test_files += Dir["test/**/*"]
   s.test_files -= Dir['test/dummy/**/*']
+  s.add_dependency("browsercms", "< 3.6.0", ">= 3.5.0")
   
   s.homepage = %q{https://github.com/browsermedia/bcms_cas}
   s.require_paths = ["lib"]
 
-  s.add_dependency("browsercms", "~> 3.3.4")
   s.add_dependency("rubycas-client")
   
 end

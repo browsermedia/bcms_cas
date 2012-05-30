@@ -68,7 +68,7 @@ module Cas
     private
 
     def self.to_absolute_url(path)
-      "http://#{SITE_DOMAIN}#{path}"
+      "http://#{Rails.application.config.cms.site_domain}#{path}"
     end
   end
 end

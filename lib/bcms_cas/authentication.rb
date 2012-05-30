@@ -42,7 +42,7 @@ module Cas
 
           # Having to set both of these feels very duplicative. Ideally I would like a way
           #   to set only once, but calling current_user= has side effects.
-          @current_user = User.current = user
+          @current_user = Cms::User.current = user
 
           logger.debug "CasUser information found in session. Setting current_user as '#{user.login}" if @current_user
         end
@@ -64,7 +64,7 @@ module Cas
       def destroy_with_cas
         logger.debug "Logging user out of both cms and CAS server."
         logout_user
-        Cas::Utils.logout(self, "http://#{SITE_DOMAIN}/")
+        Cas::Utils.logout(self, "http://#{Rails.application.config.cms.site_domain}/")
       end
     end
   end

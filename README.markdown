@@ -35,17 +35,14 @@ If you are using the same cas server for each environment (development, producti
 
 Go to your CAS domain and test that you can log in.
 
-## 2a. Ensure SITE_DOMAIN is configured.
+## 2a. Ensure site_domain is configured.
 
-Edit the production.rb to make sure your SITE_DOMAIN variable in production is correctly set to the right top level domain. This will be needed to allow redirects between the servers to happen correctly (it requires Absolute URLs).
+Edit the production.rb to make sure your site_domain configuration in production is correctly set to the right top level domain. This will be needed to allow redirects between the servers to happen correctly (it requires Absolute URLs).
 
-    SITE_DOMAIN="www.yourdomainname.com"
+    config.cms.site_domain = "www.your_site_domiain.com"
 
 ## 3. Configure the 'CAS Authenticated User' Group
-When you run rake db:migrate, this module will add a new group to the CMS called 'CAS Authenticated Users'. All users that
-log in successfully will be assigned to members of this group. You will potentially want to rename this group to something
-that more accurately reflects who these users are (i.e. Members, Staff, etc) and then set which sections of the website this
-group can visit.
+When you run rake db:migrate, this module will add a new group to the CMS called 'CAS Authenticated Users'. All users that log in successfully will be assigned to members of this group. You will potentially want to rename this group to something that more accurately reflects who these users are (i.e. Members, Staff, etc) and then set which sections of the website this group can visit.
 
 ## 4. Create a Login Form
 

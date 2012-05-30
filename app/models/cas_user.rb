@@ -19,6 +19,6 @@ class CasUser < Cms::TemporaryUser
   # @deprecated
   # This exists only for backwards compatibility for when this used to inherit from GuestUser. It should be removed in 1.2.
   def group
-    Group.find_by_code(GROUP_NAME)
+    Cms::Group.find_by_code(GROUP_NAME)
   end
 end
