@@ -19,7 +19,7 @@ module Cas
       controller_class.before_filter :verify_cas_configured
       controller_class.before_filter CASClient::Frameworks::Rails::GatewayFilter
       controller_class.before_filter :login_from_cas_ticket
-      controller_class.before_filter :try_to_stream_file      
+      controller_class.before_filter :try_to_stream_file, :only=>[:show]      
       controller_class.before_filter :check_access_to_page
       
     end
