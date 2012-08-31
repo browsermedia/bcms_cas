@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    bcms_cas (1.2.1)
+    bcms_cas (1.2.2)
       browsercms (~> 3.3.4)
       rubycas-client
 
